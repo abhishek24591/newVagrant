@@ -7,8 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import net.bytebuddy.utility.privilege.GetSystemPropertyAction;
 import util.Utility;
 
 public class NDTV {
@@ -32,22 +33,24 @@ public class NDTV {
 		
 	    Utility.clickUsingXpath(driver, xpathfile,"three_dots_on_UI");
 	    
-	    waitForVisibilityOfElementLocated("weather_button_xpath");
+	    Utility.waitForVisibilityOfElementLocated("weather_button_xpath");
 	    
 	    Utility.clickUsingXpath(driver, xpathfile,"weather_button_xpath");
 		
-		Utility.typeUsingXpath(driver, xpathfile,"username_textbox_xpath", config_file, "login_username");
-		
-		Utility.typeUsingXpath(driver, xpathfile, "pwd_textbox_xpath", config_file, "login_password");
-		
-		Utility.clickUsingXpath(driver, xpathfile, "go_btn_xpath");
-		
+	    Utility.waitForVisibilityOfElementLocated("search_input_box_pin_your_city_xpath");
+	    
+	    Utility.typeUsingXpath(driver, xpathfile, "search_input_box_pin_your_city_xpath", config_file, "city_to_be_searched");
+	    
+	    String city = Utility.getProperty(config_file,"city_to_be_searched");
+	    	    
+        driver.findElement(By.xpath("//input[@id='"+city+"']")).click();
+        
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='"+city+"'")).isDisplayed(), ""+city+" is not present on Map");
+        
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='"+city+"'")).isDisplayed(), ""+city+" is not present on Map");
+        
 
 	}
 	
-	public static void waitForVisibilityOfElementLocated(String key) throws Exception{
-		WebDriverWait w = new WebDriverWait(driver, 10);
-	    w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Utility.getProperty(xpathfile,key))));
-	}
 
 }
