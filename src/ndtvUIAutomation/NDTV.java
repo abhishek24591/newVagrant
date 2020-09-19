@@ -45,10 +45,7 @@ public class NDTV {
 	    	    
         driver.findElement(By.xpath("//input[@id='"+city+"']")).click();
         
-        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='"+city+"'")).isDisplayed(), ""+city+" is not present on Map");
-        
-        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='"+city+"'")).isDisplayed(), ""+city+" is not present on Map");
-        
+        Utility.assertCityPresenceWithTemperature(driver, Utility.getProperty(config_file,"city_to_be_searched"), Utility.getProperty(config_file,"temp_RedText"),Utility.getProperty(config_file,"temp_whiteText"));        
 
 	}
 	

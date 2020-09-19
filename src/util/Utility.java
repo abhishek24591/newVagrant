@@ -1,6 +1,7 @@
 package util;
 
 import java.io.FileInputStream;
+import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -54,10 +55,10 @@ public class Utility extends NDTV {
 		return dr.findElement(By.xpath(getProperty(xpathFile, xpathKey))).getText();
 	}
 	
-	public static void assertCityPresenceWithTemperature(String cityName,String temp_redTxt,String temp_whiteTxt) throws Exception{
-		WebElement city = driver.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']"));
-		WebElement cityTemperatureRedText = driver.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[1]"));
-		WebElement cityTemperatureWhiteText = driver.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[2]"));
+	public static void assertCityPresenceWithTemperature(WebDriver dr,String cityName,String temp_redTxt,String temp_whiteTxt) throws Exception{
+		WebElement city = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']"));
+		WebElement cityTemperatureRedText = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[1]"));
+		WebElement cityTemperatureWhiteText = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[2]"));
 		temp_redTxt  = cityTemperatureRedText.getText();
 		temp_whiteTxt = cityTemperatureWhiteText.getText();
 		
@@ -66,5 +67,21 @@ public class Utility extends NDTV {
 	   	Assert.assertTrue(cityTemperatureWhiteText.isDisplayed(), "White temperature is not on Map");
 	   	
 	}
+	
+	public static void displayWeatherInformationOfDesiredCity(WebDriver dr,String cityNm){
+		//div[text()='Patna']//following::div[@class='leaflet-popup-content']
+		WebElement WeatherPopUp = dr.findElement(By.xpath("//div[text()='"+cityNm+"']//following::div[@class='leaflet-popup-content']/div[1]"));
+		List<WebElement> weatherInformation = WeatherPopUp.findElements(By.tagName("span"));
+		String cityNameText = WeatherPopUp.findElement(By.tagName("div")).getText();
+		System.out.println("Weather information of " + cityNm + " is as below: ");
+		System.out.println(cityNameText);
+		for(WebElement el:weatherInformation){
+			System.out.println(el.getText());
+		}
+		
+	}
+	
+	
+	
 	
 }
