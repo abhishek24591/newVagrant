@@ -69,7 +69,6 @@ public class Utility extends NDTV {
 	}
 	
 	public static void displayWeatherInformationOfDesiredCity(WebDriver dr,String cityNm){
-		//div[text()='Patna']//following::div[@class='leaflet-popup-content']
 		WebElement WeatherPopUp = dr.findElement(By.xpath("//div[text()='"+cityNm+"']//following::div[@class='leaflet-popup-content']/div[1]"));
 		List<WebElement> weatherInformation = WeatherPopUp.findElements(By.tagName("span"));
 		String cityNameText = WeatherPopUp.findElement(By.tagName("div")).getText();
@@ -78,7 +77,6 @@ public class Utility extends NDTV {
 		for(WebElement el:weatherInformation){
 			System.out.println(el.getText());
 		}
-		
 	}
 	
 	

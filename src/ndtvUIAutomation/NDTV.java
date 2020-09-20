@@ -47,6 +47,8 @@ public class NDTV {
         
         Utility.assertCityPresenceWithTemperature(driver, Utility.getProperty(config_file,"city_to_be_searched"), Utility.getProperty(config_file,"temp_RedText"),Utility.getProperty(config_file,"temp_whiteText"));        
 
+        Utility.displayWeatherInformationOfDesiredCity(driver, Utility.getProperty(config_file,"city_to_be_searched"));
+        
 	}
 	
 
