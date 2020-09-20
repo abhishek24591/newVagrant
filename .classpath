@@ -113,5 +113,6 @@
 	<classpathentry kind="lib" path="F:/Rest Assured All Jars/xml-path-4.3.1-dist/docs/rest-assured-common-4.3.1-sources.jar"/>
 	<classpathentry kind="lib" path="F:/Rest Assured All Jars/xml-path-4.3.1-dist/docs/xml-path-4.3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="F:/Rest Assured All Jars/xml-path-4.3.1-dist/docs/xml-path-4.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="F:/Rest Assured All Jars/slf4j-simple-1.7.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
