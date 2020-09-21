@@ -79,6 +79,12 @@ public class Utility extends NDTV {
 		}
 	}
 	
+	public static long getTemperatureInCelcius(){
+		String temperature = driver.findElement(By.xpath("//b[text()='Temp in Degrees: 37']")).getText();
+		Object[] arr = temperature.split(": ");
+		long temperatureInCelciusFromUI = (long) arr[1];
+		return temperatureInCelciusFromUI;
+	}
 	
 	
 	

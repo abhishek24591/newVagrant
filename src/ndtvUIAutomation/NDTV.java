@@ -50,6 +50,11 @@ public class NDTV {
 
         Utility.displayWeatherInformationOfDesiredCity(driver, Utility.getProperty(config_file,"city_to_be_searched"));
         
+      //b[text()='Temp in Degrees: 37']
+        
+        
+        
+        
 	}
 	
 

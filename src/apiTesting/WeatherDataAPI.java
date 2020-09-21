@@ -12,6 +12,8 @@ import util.Utility;
 
 public class WeatherDataAPI{
 
+	public static long tempFromAPI = 0;
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -25,12 +27,13 @@ public class WeatherDataAPI{
 		.when().get("/data/2.5/weather").then().log().all().assertThat().statusCode(200).extract().response();
 		
 		System.out.println("Weather info of city " + getProperty(config_file, "city_to_be_searched") + " is --> ");
-		System.out.println(response.body().asString());
-//        JsonPath j = new JsonPath(response.toString());
-//        System.out.print(j.get("weather[0]"));
+//		System.out.println(response.body().asString());
+        JsonPath j = new JsonPath(response.asString());
+        tempFromAPI = j.getLong("main.temp");
+        System.out.println(tempFromAPI);
 	}
 	
-	public static String getProperty(String filename,String key) throws Exception
+	public static Object getProperty(String filename,String key) throws Exception
 	{
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(filename);
