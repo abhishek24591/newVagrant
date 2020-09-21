@@ -25,7 +25,8 @@ public class WeatherDataAPI{
 		.when().get("/data/2.5/weather").then().log().all().assertThat().statusCode(200).extract().response();
 		
 		System.out.println("Weather info of city " + getProperty(config_file, "city_to_be_searched") + " is --> ");
-        JsonPath j = new JsonPath(response.toString());
+		System.out.println(response.body().asString());
+//        JsonPath j = new JsonPath(response.toString());
 //        System.out.print(j.get("weather[0]"));
 	}
 	

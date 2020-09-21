@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,8 +20,8 @@ public class NDTV {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		System.setProperty("webdriver.gecko.driver", "F://Gecko//geckodriver//geckodriver.exe");
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.gecko.driver", "F://chromedriver2.34_win32//chromedriver.exe");
+		driver = new ChromeDriver();
 		
 		config_file = System.getProperty("user.dir") + "//src//config//config.properties";
 		xpathfile = System.getProperty("user.dir") + "//src//config//object_repo.properties";
