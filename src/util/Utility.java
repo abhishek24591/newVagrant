@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -21,20 +24,20 @@ public class Utility extends NDTV {
 //		System.out.println(getProperty(file,"url"));
 	}
 	
-	public static String getProperty(String filename,String key) throws Exception
+	public static Object getProperty(Object filename,Object key) throws Exception
 	{
 		Properties prop = new Properties();
-		FileInputStream fis = new FileInputStream(filename);
+		FileInputStream fis = new FileInputStream((String) filename);
 		prop.load(fis);
 		
-		return prop.getProperty(key);
+		return prop.getProperty((String) key);
 		
 	} 
 	
 	
-	public static void waitForVisibilityOfElementLocated(String key) throws Exception{
+	public static void waitForVisibilityOfElementLocated(Object key) throws Exception{
 		WebDriverWait w = new WebDriverWait(driver, 10);
-	    w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Utility.getProperty(xpathfile,key))));
+	    w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath((String) Utility.getProperty(xpathfile,key))));
 	}
 	
 	
@@ -42,22 +45,30 @@ public class Utility extends NDTV {
 	
 	public static void clickUsingXpath(WebDriver dr,String xpathFile,String xpathKey) throws Exception
 	{
-		dr.findElement(By.xpath(getProperty(xpathFile, xpathKey))).click();
+		Thread.sleep(2000);
+		dr.findElement(By.xpath((String) getProperty(xpathFile, xpathKey))).click();
 	}
 	
 	public static void typeUsingXpath(WebDriver dr,String xpathFile,String xpathKey,String dataFile,String dataToEnter) throws Exception
 	{
-		dr.findElement(By.xpath(getProperty(xpathFile, xpathKey))).sendKeys(getProperty(dataFile, dataToEnter));
+		Thread.sleep(2000);
+		Actions act = new Actions(dr);
+		Action series = (Action)act.moveToElement(dr.findElement(By.xpath((String) getProperty(xpathFile, xpathKey)))).sendKeys((String)getProperty(dataFile, dataToEnter)).build();
+//		dr.findElement(By.xpath((String) getProperty(xpathFile, xpathKey))).sendKeys((String)getProperty(dataFile, dataToEnter));
+	    series.perform();
 	}
 	
 	public static String getTextUsingXpath(WebDriver dr,String xpathFile,String xpathKey) throws Exception
 	{
-		return dr.findElement(By.xpath(getProperty(xpathFile, xpathKey))).getText();
+		return dr.findElement(By.xpath((String) getProperty(xpathFile, xpathKey))).getText();
 	}
 	
-	public static void assertCityPresenceWithTemperature(WebDriver dr,String cityName,String temp_redTxt,String temp_whiteTxt) throws Exception{
+	public static void assertCityPresenceWithTemperature(WebDriver dr,Object cityName,Object temp_redTxt,Object temp_whiteTxt) throws Exception{
+		Thread.sleep(3000);
 		WebElement city = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']"));
+		Thread.sleep(1000);
 		WebElement cityTemperatureRedText = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[1]"));
+		Thread.sleep(1000);
 		WebElement cityTemperatureWhiteText = dr.findElement(By.xpath("//div[@class='outerContainer' and @title='"+cityName+"']//div[@class='temperatureContainer']/span[2]"));
 		temp_redTxt  = cityTemperatureRedText.getText();
 		temp_whiteTxt = cityTemperatureWhiteText.getText();
@@ -68,7 +79,7 @@ public class Utility extends NDTV {
 	   	
 	}
 	
-	public static void displayWeatherInformationOfDesiredCity(WebDriver dr,String cityNm){
+	public static void displayWeatherInformationOfDesiredCity(WebDriver dr,Object cityNm) throws Exception{
 		WebElement WeatherPopUp = dr.findElement(By.xpath("//div[text()='"+cityNm+"']//following::div[@class='leaflet-popup-content']/div[1]"));
 		List<WebElement> weatherInformation = WeatherPopUp.findElements(By.tagName("span"));
 		String cityNameText = WeatherPopUp.findElement(By.tagName("div")).getText();
@@ -76,15 +87,36 @@ public class Utility extends NDTV {
 		System.out.println(cityNameText);
 		for(WebElement el:weatherInformation){
 			System.out.println(el.getText());
+			Thread.sleep(1000);
 		}
 	}
 	
-	public static long getTemperatureInCelcius(){
-		String temperature = driver.findElement(By.xpath("//b[text()='Temp in Degrees: 37']")).getText();
-		Object[] arr = temperature.split(": ");
-		long temperatureInCelciusFromUI = (long) arr[1];
-		return temperatureInCelciusFromUI;
+	/*public static void moveToElementAndClick(WebDriver dr,Object xpathfile,Object xpathkey) throws Exception{
+		Thread.sleep(1000);
+		Actions action = new Actions(dr);
+		action.moveToElement(dr.findElement(By.xpath((String) getProperty(xpathfile, xpathkey)))).click();
+	} */
+	
+	public static void moveToElementAndClickAutoSuggestiveDropdown(WebDriver dr,Object cityName) throws Exception{
+		Thread.sleep(2000);
+		List<WebElement> allCities = dr.findElements(By.xpath("//div[@class='messages']//label/input"));
+		for(WebElement element:allCities){
+			if(element.getAttribute("id").equalsIgnoreCase((String) cityName)){
+				element.click();
+			}
+		}
 	}
+	
+	public static void moveToElementAndClickOnMap(WebDriver dr,Object cityName) throws Exception{
+		Thread.sleep(1000);
+//		Actions action = new Actions(dr);
+        WebElement element = dr.findElement(By.xpath("//div[@title='"+cityName+"']"));
+//		((JavascriptExecutor) dr).executeScript("arguments[0].click();", element);
+        element.click();
+	}
+	
+	
+	
 	
 	
 	

@@ -1,50 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="45" started-at="2020-09-21T13:14:23Z" finished-at="2020-09-21T13:14:23Z">
+  <suite name="Default suite" duration-ms="75244" started-at="2020-09-24T07:34:22Z" finished-at="2020-09-24T07:35:37Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="45" started-at="2020-09-21T13:14:23Z" finished-at="2020-09-21T13:14:23Z">
-      <class name="comparator.ComparisonUIandAPI">
-        <test-method status="FAIL" signature="comparator()[pri:0, instance:comparator.ComparisonUIandAPI@3c0f93f1]" name="comparator" duration-ms="22" started-at="2020-09-21T18:44:23Z" finished-at="2020-09-21T18:44:23Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at util.Utility.getTemperatureInCelcius(Utility.java:83)
-	at comparator.ComparisonUIandAPI.comparator(ComparisonUIandAPI.java:15)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:669)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:877)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1201)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-	at org.testng.TestRunner.privateRun(TestRunner.java:776)
-	at org.testng.TestRunner.run(TestRunner.java:634)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:425)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:420)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:385)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:334)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1318)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1243)
-	at org.testng.TestNG.runSuites(TestNG.java:1161)
-	at org.testng.TestNG.run(TestNG.java:1129)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+    <test name="Default test" duration-ms="75244" started-at="2020-09-24T07:34:22Z" finished-at="2020-09-24T07:35:37Z">
+      <class name="ndtvUIAutomation.NDTV">
+        <test-method status="PASS" signature="UIandAPIComparator()[pri:0, instance:ndtvUIAutomation.NDTV@a67c67e]" name="UIandAPIComparator" duration-ms="75200" started-at="2020-09-24T13:04:22Z" finished-at="2020-09-24T13:05:37Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- comparator -->
-      </class> <!-- comparator.ComparisonUIandAPI -->
+        </test-method> <!-- UIandAPIComparator -->
+      </class> <!-- ndtvUIAutomation.NDTV -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
